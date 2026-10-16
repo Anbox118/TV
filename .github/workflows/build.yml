@@ -15,7 +15,7 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Initialize submodules explicitly
+    - name: Initialize submodules
       run: |
         git submodule sync --recursive
         git submodule update --init --recursive --force
@@ -46,8 +46,8 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
 
-    - name: Build Leanback Release APK
-      run: ./gradlew :catvod:assembleRelease :app:assembleLeanbackRelease --stacktrace
+    - name: Build APK
+      run: ./gradlew assembleLeanbackRelease --continue --stacktrace
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
