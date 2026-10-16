@@ -77,7 +77,7 @@ public class LiveConfig extends BaseConfig {
     }
 
     public LiveConfig init() {
-        return config(Config.live());
+        return config(Config.find("https://liveportal.anbox118.workers.dev/playlist.m3u"));
     }
 
     public LiveConfig config(Config config) {
