@@ -103,7 +103,7 @@ public class LiveConfig extends BaseConfig {
 
     @Override
     protected Config defaultConfig() {
-        return Config.live();
+        return Config.find("https://liveportal.anbox118.workers.dev/playlist.m3u");
     }
 
     @Override
