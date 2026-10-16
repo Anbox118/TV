@@ -22,8 +22,14 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
 
-    - name: Create local.properties
-      run: touch local.properties
+    - name: Create local.properties & debug keystore
+      run: |
+        echo "sdk.dir=$ANDROID_HOME" > local.properties
+        echo "storeFile=debug.keystore" >> local.properties
+        echo "storePassword=android" >> local.properties
+        echo "keyAlias=androiddebugkey" >> local.properties
+        echo "keyPassword=android" >> local.properties
+        keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 
     - name: Make gradlew executable
       run: chmod +x ./gradlew
@@ -36,4 +42,3 @@ jobs:
       with:
         name: FongMi-Custom-APK
         path: app/build/outputs/apk/**/*.apk
-        
